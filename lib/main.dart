@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'recipe.dart';
+import 'recipe_detail.dart';
 
 void main() {
   runApp(RecipeApp());
@@ -41,12 +42,54 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView.builder(
           itemCount: Recipe.samples.length,
           itemBuilder: (BuildContext context, int index) {
-            //todo update to return recipe card
-            return Text(Recipe.samples[index].label);
+            return GestureDetector(
+              //определяет место, в котором активны жесты
+              onTap: () {
+                //вызывается при нажатии
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    //вывод новой страницы в стек
+                    builder: (context) {
+                      return RecipeDetail(recipe: Recipe.samples[index]);
+                      //return Text('Detail page');
+                    },
+                  ),
+                );
+              },
+              //11
+              child: buildRecipeCard(Recipe.samples[index]),
+            );
           },
         ),
       ),
     );
   }
-//todo
+
+  Widget buildRecipeCard(Recipe recipe) {
+    return Card(
+        elevation: 2.0, //тень
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: <Widget>[
+              Image(image: AssetImage(recipe.imageYrl)),
+              const SizedBox(
+                height: 5.0,
+                width: 7.0,
+              ),
+              Text(
+                recipe.label,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Palatino',
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
 }

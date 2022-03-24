@@ -1,19 +1,48 @@
-
 class Recipe {
   String label;
   String imageYrl;
-  //todo
-  Recipe(
-      this.label,
+  int servings;
+  List<Ingredient> ingredients;
+
+  Recipe(this.label,
       this.imageYrl,
-      );
+      this.servings,
+      this.ingredients,);
+
   static List<Recipe> samples = [
-    Recipe('Spagett and Meatballs', 'assets/SaM.jpg',),
-    Recipe('Tomato Soup', 'assets/TS.jpg',),
-    Recipe('Grilled Cheese', 'assets/GC.jpg',),
-    Recipe('Chocolate Chip Cookies', 'assets/CCC.jpg',),
-    Recipe('Taco Salad', 'assets/TcS.jpg)',),
-    Recipe('Hawaiian Pizza', 'assets/HP.jpg',)
+    Recipe('Spagett and Meatballs', 'SaM.jpg', 4, [
+      Ingredient(1, 'box', 'Spagetti'),
+      Ingredient(4, '', 'Frozen Meatballs'),
+      Ingredient(0.5, 'jar', 'sauce'),
+    ]),
+    Recipe('Tomato Soup', 'TS.jpg', 2, [Ingredient(1, 'can', 'Tomato Soup'),]),
+    Recipe('Grilled Cheese', 'GC.jpg', 1,
+        [Ingredient(2, 'slices', 'Cheese'), Ingredient(2, 'slices', 'Bread'),]),
+    Recipe('Chocolate Chip Cookies', 'CCC.jpg', 24, [
+      Ingredient(4, 'cups', 'flour'),
+      Ingredient(2, 'cups', 'sugar'),
+      Ingredient(0.5, 'cups', 'chocolate chips'),
+    ]),
+    Recipe('Taco Salad', 'TcS.jpg', 1, [
+      Ingredient(4, 'oz', 'nachos'),
+      Ingredient(3, 'oz', 'taco meat'),
+      Ingredient(0.5, 'cup', 'cheese'),
+      Ingredient(0.25, 'cup', 'chopped tomatoes'),
+    ]),
+    Recipe('Hawaiian Pizza', 'HP.jpg', 4, [
+      Ingredient(1, 'item', 'pizza'),
+      Ingredient(1, 'cup', 'pineapple'),
+      Ingredient(8, 'oz', 'ham'),
+    ])
   ];
 }
-//todo
+
+class Ingredient {
+  double quantity;
+  String measure;
+  String name;
+
+  Ingredient(this.quantity,
+      this.measure,
+      this.name,);
+}
